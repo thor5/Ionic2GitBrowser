@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";  
 import { GitHubService } from '../../services/github';
+import { NavController } from 'ionic-angular';  
+import { DetailsPage } from '../details/details'; 
 
 @Component({
     selector: 'page-home',
@@ -10,7 +12,13 @@ export class HomePage {
     public foundRepos;
     public username;
 
-    constructor(private github: GitHubService) {
+    constructor(private github: GitHubService,  
+            private nav: NavController) {
+
+    }
+
+    goToDetails(repo) {  
+        this.nav.push(DetailsPage, { repo: repo });
     }
 
     getRepos() {
